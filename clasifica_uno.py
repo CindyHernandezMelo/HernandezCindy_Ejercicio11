@@ -81,7 +81,14 @@ plt.legend(loc = 'lower right')
 # derivada
 
 dF1 = (F1_score_unos[2:,1]-F1_score_unos[0:-2,1])/(2)
-index_dF1 = np.argsort(dF1)
+
+ventana= 3
+promedio = np.zeros(np.shape(dF1)[0]-3)
+for i in range(np.shape(dF1)[0]-3):
+    promedio[i] = np.mean(dF1[i:i+3])
+    
+
+index_dF1 = np.argsort(promedio)
 plt.subplot(121)
 plt.axvline(x=index_dF1[1], c = 'r')
 
